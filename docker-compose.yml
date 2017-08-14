@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  applications:
+    image: golang:1.8.3-alpine3.6
+    volumes:
+      - ./sia-data/:/var/sia-data
+    restart:
+      always
+    command:
+      tail -f /dev/null

@@ -2,7 +2,7 @@ FROM golang:1.8.3-alpine3.6
 
 RUN apk update && \
     apk upgrade && \
-    apk add git make build-base
+    apk add git make socat build-base
 
 RUN go-wrapper download -u github.com/NebulousLabs/Sia/...
 RUN cd /go/src/github.com/NebulousLabs/Sia && \
@@ -21,3 +21,5 @@ RUN cd /go/src/github.com/minio/minio && \
     make install
 
 EXPOSE 9000
+
+ENTRYPOINT socat tcp-listen:9980,reuseaddr,fork tcp:sia:19980 & minio gateway sia

@@ -10,8 +10,14 @@ up:
 init-seed:
 	docker-compose exec sia siac wallet init
 
+init-seed-force:
+	docker-compose exec sia siac wallet init --force
+
 unlock:
 	docker-compose exec sia siac wallet unlock
+
+address:
+	docker-compose exec sia siac wallet address
 
 download:
 	echo "this may take hours"

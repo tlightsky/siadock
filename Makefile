@@ -19,6 +19,9 @@ unlock:
 address:
 	docker-compose exec sia siac wallet address
 
+setallowance:
+	docker-compose exec sia siac renter setallowance 500SC 12w
+
 download:
 	echo "this may take hours"
 	mkdir -p ./sia-data/consensus/

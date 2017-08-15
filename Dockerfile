@@ -8,5 +8,6 @@ RUN go-wrapper download -u github.com/NebulousLabs/Sia/...  # "go get -d -v ./..
 
 WORKDIR /go/src/github.com/NebulousLabs/Sia
 
-RUN git checkout -b v1.3.0 tasg/v1.3.0
+RUN git checkout -b v1.3.0 tags/v1.3.0
+RUN apk add make
 RUN make release-std

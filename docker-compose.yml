@@ -8,4 +8,4 @@ services:
     restart:
       always
     command:
-      tail -f /dev/null
+      siad  --modules=cgtrw --sia-directory=/var/sia-data

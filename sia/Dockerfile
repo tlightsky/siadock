@@ -11,3 +11,5 @@ WORKDIR /go/src/github.com/NebulousLabs/Sia
 RUN git checkout -b v1.3.0 tags/v1.3.0
 RUN apk add make
 RUN make release-std
+
+EXPOSE 9980

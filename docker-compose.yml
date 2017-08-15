@@ -2,10 +2,32 @@ version: '2'
 
 services:
   sia:
-    build: .
+    build: 
+      context: ./sia
     volumes:
       - ./sia-data/:/var/sia-data
+      - ./minio-data/:/var/minio-data
     restart:
       always
     command:
-      siad  --modules=cgtrw --sia-directory=/var/sia-data
+      siad --modules=cgtrw --sia-directory=/var/sia-data --disable-api-security --authenticate-api
+    ports:
+      - "9980:9980"
+  minio:
+    build:
+      context: ./minio
+    environment:
+      - SIA_CACHE_MAX_SIZE_BYTES=10000000000  # 10GB
+      - SIA_DAEMON_ADDR=http://sia:9980
+      - SIA_CACHE_DIR=/var/minio-data/sia_cache
+      - SIA_DB_FILE=/var/minio-data/sia.db
+      - MINIO_ACCESS_KEY=minio
+      - MINIO_SECRET_KEY=welovesia
+    volumes_from:
+      - sia
+    links:
+      - sia
+    command:
+      minio gateway sia
+    ports:
+      - "9000:9000"

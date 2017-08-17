@@ -18,6 +18,9 @@ services:
       - SIA_DB_FILE=/var/minio-data/sia.db
       - MINIO_ACCESS_KEY=minio
       - MINIO_SECRET_KEY=welovesia
+      - SIA_DAEMON_ADDR=sia:19980
+      - SIA_BACKGROUND_UPLOAD=1
+      - SIA_DEBUG=1
     volumes_from:
       - sia
     links:

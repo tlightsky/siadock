@@ -15,6 +15,8 @@ RUN go-wrapper download -u github.com/boltdb/bolt
 
 WORKDIR /go/src/github.com/minio/minio
 
+ENV REFRESHED_AT 17.8.17
+
 RUN cd /go/src/github.com/minio/minio && \
 	git remote add dvstate https://github.com/dvstate/minio.git && \
 	git fetch dvstate && \
@@ -23,4 +25,4 @@ RUN cd /go/src/github.com/minio/minio && \
 
 EXPOSE 9000
 
-ENTRYPOINT socat tcp-listen:9980,reuseaddr,fork tcp:sia:19980 & minio gateway sia
+ENTRYPOINT minio gateway sia

@@ -20,7 +20,7 @@ ENV REFRESHED_AT 17.8.17
 RUN cd /go/src/github.com/minio/minio && \
 	git remote add dvstate https://github.com/dvstate/minio.git && \
 	git fetch dvstate && \
-	git checkout -b sia_integration_v3 dvstate/sia_integration_v3 && \
+	git checkout -b sia_integration_v2 dvstate/sia_integration_v2 && \
     make install
 
 EXPOSE 9000
